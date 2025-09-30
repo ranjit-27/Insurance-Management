@@ -1,0 +1,75 @@
+<div class="w-full bg-[#e6f3ff] min-h-screen p-6">
+
+  <div class="max-w-6xl mx-auto space-y-8">
+
+    <!-- Pending Claims Card -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-2xl font-semibold mb-4 text-gray-700">Pending Claims</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse rounded-lg overflow-hidden text-base">
+          <thead class="bg-blue-100 text-gray-700">
+            <tr>
+              <th class="border p-3 text-left">Customer</th>
+              <th class="border p-3 text-left">Amount</th>
+              <th class="border p-3 text-left">Description</th>
+              <th class="border p-3 text-left">Status</th>
+              <th class="border p-3 text-left">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let claim of pendingClaims" class="text-gray-700 hover:bg-blue-50 transition">
+              <td class="border p-3">{{ claim.userId.name }}</td>
+              <td class="border p-3">₹{{ claim.amountClaimed }}</td>
+              <td class="border p-3">{{ claim.description }}</td>
+              <td class="border p-3 font-medium">{{ claim.status }}</td>
+              <td class="border p-3">
+                <select [(ngModel)]="selectedStatus[claim._id]" class="border p-1 rounded text-base">
+                  <option value="approved">Approve</option>
+                  <option value="rejected">Reject</option>
+                </select>
+                <button (click)="updateStatus(claim._id)"
+                        class="bg-blue-600 text-white px-3 py-1 rounded ml-2 hover:bg-blue-700 transition">
+                  Update
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- All Claims Card -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-2xl font-semibold mb-4 text-gray-700">All Claims</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse rounded-lg overflow-hidden text-base">
+          <thead class="bg-blue-100 text-gray-700">
+            <tr>
+              <th class="border p-3 text-left">Customer</th>
+              <th class="border p-3 text-left">Amount</th>
+              <th class="border p-3 text-left">Description</th>
+              <th class="border p-3 text-left">Status</th>
+              <th class="border p-3 text-left">Decided By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let claim of claims" class="text-gray-700 hover:bg-blue-50 transition">
+              <td class="border p-3">{{ claim.userId.name }}</td>
+              <td class="border p-3">₹{{ claim.amountClaimed }}</td>
+              <td class="border p-3">{{ claim.description }}</td>
+              <td class="border p-3 font-medium">
+                <span [ngClass]="{
+                  'text-yellow-600': claim.status === 'pending',
+                  'text-green-600': claim.status === 'approved',
+                  'text-red-600': claim.status === 'rejected'
+                }">{{ claim.status }}</span>
+              </td>
+              <td class="border p-3">{{ claim.decidedByAgentId?.name || '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="min-h-screen flex items-center justify-center bg-[#e6f3ff] p-6">
+  <div class="bg-white shadow-2xl rounded-3xl p-10 w-full max-w-lg border border-gray-200">
+
+    <!-- Title -->
+    <h2 class="text-3xl font-bold text-center text-[#1a365d] mb-8">Purchase Policy</h2>
+
+    <!-- Form -->
+    <div class="space-y-6">
+      <!-- Premium Paid -->
+      <div>
+        <label class="block mb-2 font-medium text-gray-700">Premium Paid</label>
+        <input type="number" [(ngModel)]="premiumPaid"
+               class="w-full px-5 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-[#3182ce] transition"
+               placeholder="Enter premium amount">
+      </div>
+
+      <!-- Nominee Name -->
+      <div>
+        <label class="block mb-2 font-medium text-gray-700">Nominee Name</label>
+        <input type="text" [(ngModel)]="nomineeName"
+               class="w-full px-5 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-[#3182ce] transition"
+               placeholder="Enter nominee name">
+      </div>
+
+      <!-- Nominee Relation -->
+      <div>
+        <label class="block mb-2 font-medium text-gray-700">Nominee Relation</label>
+        <input type="text" [(ngModel)]="nomineeRelation"
+               class="w-full px-5 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-[#3182ce] transition"
+               placeholder="Enter relation">
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex gap-4 justify-center mt-4">
+        <button (click)="confirmPurchase()" 
+                class="bg-green-600 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition shadow-md">
+          Confirm Purchase
+        </button>
+        <button (click)="cancel()" 
+                class="bg-gray-500 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-gray-600 transition shadow-md">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

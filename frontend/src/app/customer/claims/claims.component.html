@@ -1,0 +1,91 @@
+<div class="min-h-screen bg-[#e6f3ff] p-6">
+
+  <!-- Back Button -->
+  <div class="mb-6">
+    <button (click)="back()"
+      class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
+      ← Back to My Policies
+    </button>
+  </div>
+
+  <!-- Claim Form -->
+  <div *ngIf="policyId" class="bg-white shadow-xl rounded-2xl p-8 max-w-2xl mx-auto mb-8 border border-gray-200">
+    <h2 class="text-2xl font-bold text-[#1a365d] mb-6 text-center">Submit a Claim</h2>
+
+    <form (ngSubmit)="addClaim()" class="space-y-5">
+      <!-- Policy ID -->
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">Policy ID</label>
+        <input type="text" [(ngModel)]="newClaim.policyId" name="policyId"
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3182ce] transition" required />
+      </div>
+
+      <!-- Incident Date -->
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">Incident Date</label>
+        <input type="date" [(ngModel)]="newClaim.incidentDate" name="incidentDate"
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3182ce] transition" required />
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">Description</label>
+        <textarea [(ngModel)]="newClaim.description" name="description"
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3182ce] transition" rows="4" required></textarea>
+      </div>
+
+      <!-- Amount Claimed -->
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">Amount Claimed</label>
+        <input type="number" [(ngModel)]="newClaim.amountClaimed" name="amountClaimed"
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3182ce] transition" required />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit"
+          class="bg-[#3182ce] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#2c5282] transition-colors duration-200 shadow-md text-lg">
+          Submit Claim
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Claims Table -->
+  <div class="bg-white shadow-xl rounded-2xl p-6 max-w-5xl mx-auto border border-gray-200">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-700 text-center">Your Claims</h2>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border p-3 text-left">Claim ID</th>
+            <th class="border p-3 text-left">Policy ID</th>
+            <th class="border p-3 text-left">Incident Date</th>
+            <th class="border p-3 text-left">Description</th>
+            <th class="border p-3 text-left">Amount Claimed</th>
+            <th class="border p-3 text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let claim of claims" class="hover:bg-gray-50 transition">
+            <td class="border p-3">{{ claim._id }}</td>
+            <td class="border p-3">{{ claim.incidentDate | date:'yyyy-MM-dd' }}</td>
+            <td class="border p-3">{{ claim.description }}</td>
+            <td class="border p-3">₹{{ claim.amountClaimed }}</td>
+            <td class="border p-3">
+              <span [ngClass]="{
+                'text-yellow-600 font-semibold': claim.status === 'pending',
+                'text-green-600 font-semibold': claim.status === 'approved',
+                'text-red-600 font-semibold': claim.status === 'rejected'
+              }">{{ claim.status }}</span>
+            </td>
+            <td class="border p-3">{{ claim.createdAt | date:'yyyy-MM-dd HH:mm' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,169 @@
+<div class="min-h-screen bg-[#e6f3ff] p-8">
+
+  <!-- Dashboard Heading -->
+  <h1 class="text-3xl font-bold text-center text-[#1a365d] mb-8">Admin Dashboard</h1>
+
+  <!-- === Statistics Section === -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
+    
+    <!-- Users -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-indigo-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Users</h3>
+        <p class="text-2xl font-bold text-[#1a365d]">{{ summary.users }}</p>
+      </div>
+    </div>
+
+    <!-- Policies Sold -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-blue-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3-1.343 3-3S13.657 2 12 2 9 3.343 9 5s1.343 3 3 3zM12 14c4.418 0 8 1.79 8 4v2H4v-2c0-2.21 3.582-4 8-4z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Policies Sold</h3>
+        <p class="text-2xl font-bold text-[#1a365d]">{{ summary.policiesSold }}</p>
+      </div>
+    </div>
+
+    <!-- Pending Claims -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-yellow-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h4M7 7h.01M12 12h.01M17 7h.01" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Pending Claims</h3>
+        <p class="text-2xl font-bold text-[#1a365d]">{{ summary.claimsPending }}</p>
+      </div>
+    </div>
+
+    <!-- Total Payments -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-red-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zM12 2a10 10 0 100 20 10 10 0 000-20z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Total Payments</h3>
+        <p class="text-2xl font-bold text-[#1a365d]">₹{{ summary.totalPayments }}</p>
+      </div>
+    </div>
+
+    <!-- Total Claims -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-pink-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h4M7 7h.01M12 12h.01M17 7h.01" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Total Claims</h3>
+        <p class="text-2xl font-bold text-[#1a365d]">{{ summary.totalClaims }}</p>
+      </div>
+    </div>
+
+    <!-- Total Agents -->
+    <div class="bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-green-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 7.292 4 4 0 010-7.292zM6 20h12v-2a6 6 0 00-12 0v2z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Total Agents</h3>
+        <p class="text-2xl font-bold text-[#1a365d]">{{ summary.totalAgnents}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- === Management Section === -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+    <!-- Policy Management -->
+    <div (click)="policy()" class="cursor-pointer bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-blue-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3-1.343 3-3S13.657 2 12 2 9 3.343 9 5s1.343 3 3 3zM12 14c4.418 0 8 1.79 8 4v2H4v-2c0-2.21 3.582-4 8-4z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Policy Management</h3>
+        <p class="text-sm text-gray-500">View and manage all policies</p>
+      </div>
+    </div>
+
+    <!-- Agent Management -->
+    <div (click)="agents()" class="cursor-pointer bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-green-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 7.292 4 4 0 010-7.292zM6 20h12v-2a6 6 0 00-12 0v2z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Agent Management</h3>
+        <p class="text-sm text-gray-500">Manage all agents</p>
+      </div>
+    </div>
+
+    <!-- User Management -->
+    <div (click)="customers()" class="cursor-pointer bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-indigo-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">User Management</h3>
+        <p class="text-sm text-gray-500">Manage all users</p>
+      </div>
+    </div>
+
+    <!-- Claims Management -->
+    <div (click)="claims()" class="cursor-pointer bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-yellow-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h4M7 7h.01M12 12h.01M17 7h.01" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Claims Management</h3>
+        <p class="text-sm text-gray-500">Track and approve claims</p>
+      </div>
+    </div>
+
+    <!-- Payments -->
+    <div (click)="payments()" class="cursor-pointer bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-red-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3v3h6v-3c0-1.657-1.343-3-3-3zM12 2a10 10 0 100 20 10 10 0 000-20z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Payments</h3>
+        <p class="text-sm text-gray-500">Monitor all payments</p>
+      </div>
+    </div>
+
+    <!-- Audit -->
+    <div (click)="audit()" class="cursor-pointer bg-white shadow-xl rounded-2xl p-6 flex items-center space-x-4 hover:shadow-2xl transition">
+      <div class="bg-purple-500 p-4 rounded-full text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700">Audit</h3>
+        <p class="text-sm text-gray-500">Review system activities</p>
+      </div>
+    </div>
+  </div>
+</div>

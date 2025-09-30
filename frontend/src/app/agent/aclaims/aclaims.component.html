@@ -1,0 +1,67 @@
+<p>aclaims works!</p>
+<div class="p-6 max-w-7xl mx-auto space-y-6">
+
+  <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Assigned Claims</h2>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="bg-red-100 text-red-700 p-3 rounded-md mb-4">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Claims Table -->
+  <div class="overflow-x-auto bg-white shadow-lg rounded-2xl border border-gray-200">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gradient-to-r from-[#3182ce] to-[#2c5282] text-white">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-medium">Claim ID</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">User</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Policy ID</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Incident Date</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Amount Claimed</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let claim of claims" class="hover:bg-gray-50 transition">
+          <td class="px-6 py-4 text-gray-700 font-medium">{{ claim._id }}</td>
+     
+          <td class="px-6 py-4 text-gray-600">{{ claim.userPolicyId }}</td>
+          <td class="px-6 py-4 text-gray-600">{{ claim.incidentDate | date:'shortDate' }}</td>
+          <td class="px-6 py-4 text-gray-600">₹{{ claim.amountClaimed }}</td>
+          <td class="px-6 py-4">
+            <span 
+              [ngClass]="{
+                'bg-yellow-100 text-yellow-800': claim.status === 'pending',
+                'bg-green-100 text-green-800': claim.status === 'approved',
+                'bg-red-100 text-red-800': claim.status === 'rejected'
+              }" 
+              class="px-2 py-1 rounded-full text-sm font-semibold">
+              {{ claim.status }}
+            </span>
+          </td>
+          <td class="px-6 py-4 space-x-2">
+            <button 
+              class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+              [disabled]="claim.status !== 'pending'"
+              (click)="approveClaim(claim._id!, 'approved')">
+              Approve
+            </button>
+            <button 
+              class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+              [disabled]="claim.status !== 'pending'"
+              (click)="approveClaim(claim._id!, 'rejected')">
+              Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Claims -->
+  <div *ngIf="claims.length === 0" class="text-gray-500 text-center mt-4">
+    No claims assigned to you.
+  </div>
+
+</div>

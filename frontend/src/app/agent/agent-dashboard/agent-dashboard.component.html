@@ -1,0 +1,53 @@
+<div class="p-6 max-w-7xl mx-auto space-y-10">
+
+  <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Customers Assigned to You</h2>
+
+    <div *ngIf="customers.length === 0" class="text-gray-500">No customers found.</div>
+
+    <div *ngIf="customers.length > 0" class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow">
+        <thead class="bg-blue-600 text-white">
+          <tr>
+            <th class="px-6 py-3 text-left text-sm font-medium">Name</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Email</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let customer of customers" class="hover:bg-gray-50 transition">
+            <td class="px-6 py-4 font-medium text-gray-700">{{ customer.name }}</td>
+            <td class="px-6 py-4 text-gray-600">{{ customer.email }}</td>
+            <td class="px-6 py-4">
+              <button (click)="viewCustomerPolicies(customer._id)"
+                class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition font-semibold">
+                View Policies
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="selectedCustomerPolicies.length > 0" class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+    <h3 class="text-xl font-semibold mb-4 text-gray-700"> Policies of Selected Customer</h3>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow">
+        <thead class="bg-green-600 text-white">
+          <tr>
+            <th class="px-6 py-3 text-left text-sm font-medium">Policy ID</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
+           
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let policy of selectedCustomerPolicies" class="hover:bg-gray-50 transition">
+            <td class="px-6 py-4 text-gray-700">{{ policy._id }}</td>
+            <td class="px-6 py-4 text-gray-600">{{ policy.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

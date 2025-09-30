@@ -1,0 +1,26 @@
+<div class="p-6 w-full bg-[#e6f3ff] min-h-screen">
+
+  <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Payments</h2>
+
+  <div class="bg-white shadow-lg rounded-2xl border border-gray-200 overflow-x-auto w-full">
+    <table class="w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Amount (₹)</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Method</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Reference</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Date</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let payment of payments" class="hover:bg-gray-50 transition">
+          <td class="px-6 py-4 font-medium text-gray-700">₹{{ payment.amount }}</td>
+          <td class="px-6 py-4 text-gray-600">{{ payment.method }}</td>
+          <td class="px-6 py-4 text-gray-600">{{ payment.reference }}</td>
+          <td class="px-6 py-4 text-gray-600">{{ payment.createdAt | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,58 @@
+<nav class="bg-[#3182ce] shadow-md">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="h-12 w-12 bg-white rounded-xl flex items-center justify-center shadow-md">
+          <svg class="h-8 w-8 text-[#2c5282]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+        </div>
+        <a [routerLink]="['/']" class="text-white text-2xl font-bold tracking-tight">SafeGuard Insurance</a>
+      </div>
+
+      <!-- Navbar Links -->
+      <div class="flex items-center gap-2">
+
+        <!-- Common -->
+        <a [routerLink]="['/about']" class="nav-link text-white hover:bg-[#2c5282]">About</a>
+
+        <!-- Not logged in -->
+        <ng-container *ngIf="!isLoggedIn()">
+          <a [routerLink]="['/register']" class="nav-link text-white hover:bg-[#2c5282]">Register</a>
+          <a [routerLink]="['/login']" class="nav-link text-white hover:bg-[#2c5282]">Login</a>
+        </ng-container>
+
+        <!-- Customer -->
+        <ng-container *ngIf="isLoggedIn() && role === 'customer'">
+          <a [routerLink]="['/customer']" class="nav-link text-white hover:bg-[#2c5282]">Policies</a>
+          <a [routerLink]="['/customer/my-policies']" class="nav-link text-white hover:bg-[#2c5282]">My Policies</a>
+          <a [routerLink]="['/customer/claims']" class="nav-link text-white hover:bg-[#2c5282]">Claims</a>
+          <a [routerLink]="['/customer/pay-premium']" class="nav-link text-white hover:bg-[#2c5282]">Payments</a>
+          <button (click)="logout()" class="btn-logout text-white bg-red-500 px-3 py-1 rounded">Logout</button>
+        </ng-container>
+
+        <!-- Agent -->
+        <ng-container *ngIf="isLoggedIn() && role === 'agent'">
+          <a [routerLink]="['/agent']" class="nav-link text-white hover:bg-[#2c5282]">customers</a>
+          <a [routerLink]="['/agent/claims']" class="nav-link text-white hover:bg-[#2c5282]">Claims</a>
+          <button (click)="logout()" class="btn-logout text-white bg-red-500 px-3 py-1 rounded">Logout</button>
+        </ng-container>
+
+        <!-- Admin -->
+        <ng-container *ngIf="isLoggedIn() && role === 'admin'">
+          <a [routerLink]="['/admin/policy']" class="nav-link text-white hover:bg-[#2c5282]">Policies</a>
+          <a [routerLink]="['/admin/agents']" class="nav-link text-white hover:bg-[#2c5282]">Agents</a>
+          <a [routerLink]="['/admin/customers']" class="nav-link text-white hover:bg-[#2c5282]">Customers</a>
+          <a [routerLink]="['/admin/claims']" class="nav-link text-white hover:bg-[#2c5282]">Claims</a>
+          <a [routerLink]="['/admin/payments']" class="nav-link text-white hover:bg-[#2c5282]">Payments</a>
+          <button (click)="logout()" class="btn-logout text-white bg-red-500 px-3 py-1 rounded">Logout</button>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

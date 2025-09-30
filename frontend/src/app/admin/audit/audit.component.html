@@ -1,0 +1,46 @@
+<div class="p-6 max-w-7xl mx-auto space-y-6">
+
+  <h2 class="text-3xl font-bold text-gray-800 text-center">Audit Logs</h2>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="bg-red-100 text-red-700 p-3 rounded-md">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center py-6 text-gray-500">
+    Loading audit logs...
+  </div>
+
+  <!-- Logs Table -->
+  <div *ngIf="!loading && auditLogs.length > 0" class="overflow-x-auto bg-white shadow-lg rounded-2xl border border-gray-200">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-medium">Timestamp</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Action</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Actor</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">IP</th>
+          <th class="px-6 py-3 text-left text-sm font-medium">Details</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-100">
+        <tr *ngFor="let log of auditLogs" class="hover:bg-gray-50 transition">
+          <td class="px-6 py-4 text-gray-600">{{ log.timestamp | date:'short' }}</td>
+          <td class="px-6 py-4 font-medium text-gray-800">{{ log.action }}</td>
+          <td class="px-6 py-4 text-gray-600">{{ log.actorId }}</td>
+          <td class="px-6 py-4 text-gray-600">{{ log.ip || 'N/A' }}</td>
+          <td class="px-6 py-4 text-gray-600">
+            <pre class="whitespace-pre-wrap text-xs bg-gray-50 p-2 rounded">{{ log.details | json }}</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Logs -->
+  <div *ngIf="!loading && auditLogs.length === 0" class="text-gray-500 text-center py-4">
+    No audit logs found.
+  </div>
+
+</div>
